@@ -13,7 +13,12 @@
 <meta property="og:title" content="Subly — サブスクを、もう忘れない。" />
 <meta property="og:description" content="毎月・年間のサブスク支払いを見える化。更新前・トライアル終了前に通知。データは端末内保存。" />
 <meta property="og:locale" content="ja_JP" />
-<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="icon-512.png" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" href="icon.png" type="image/png" />
+<link rel="apple-touch-icon" href="icon-512.png" />
+<link rel="icon" media="(prefers-color-scheme: dark)" href="icon-dark.png" type="image/png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -114,19 +119,9 @@
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; color: var(--text); letter-spacing: -0.01em; }
   .brand-logo {
     width: 32px; height: 32px; border-radius: 8px;
-    background:
-      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35), transparent 50%),
-      linear-gradient(135deg, var(--accent-soft), var(--accent), var(--accent-strong));
-    box-shadow: 0 2px 6px rgba(20, 30, 80, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
-    position: relative;
-  }
-  .brand-logo::after {
-    content: "S";
-    position: absolute; inset: 0;
-    display: grid; place-items: center;
-    color: #fff; font-weight: 800; font-size: 17px;
-    letter-spacing: -0.02em;
-    font-family: "Inter", sans-serif;
+    box-shadow: 0 2px 6px rgba(20, 30, 80, 0.18);
+    display: block;
+    object-fit: cover;
   }
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; }
@@ -594,7 +589,7 @@
 <nav class="nav">
   <div class="wrap">
     <a href="#" class="brand">
-      <div class="brand-logo" aria-hidden="true"></div>
+      <picture><source srcset="icon-dark.png" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="icon.png" alt="" /></picture>
       <span>Subly</span>
     </a>
     <div class="nav-links">
@@ -866,7 +861,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="brand-logo" aria-hidden="true"></div>
+        <picture><source srcset="icon-dark.png" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="icon.png" alt="" /></picture>
         <span>Subly</span>
       </div>
       <ul>
