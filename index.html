@@ -275,6 +275,12 @@
     color: var(--text);
     display: flex; flex-direction: column;
   }
+  .phone-screen-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
   /* Dynamic island */
   .phone-island {
     position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
@@ -631,52 +637,8 @@
         </div>
 
         <div class="phone">
-          <div class="phone-island"></div>
           <div class="phone-screen">
-            <div class="phone-status">
-              <span>9:41</span>
-              <div class="phone-status-right">
-                <svg viewBox="0 0 18 12" fill="currentColor"><use href="#i-signal"/></svg>
-                <svg viewBox="0 0 26 12" width="22" height="11" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="22" height="11" rx="3"/><rect x="2" y="2" width="16" height="8" rx="1.5" fill="currentColor" stroke="none"/><rect x="23" y="4" width="2" height="4" rx="1" fill="currentColor" stroke="none"/></svg>
-              </div>
-            </div>
-            <div class="phone-content">
-              <div class="phone-title">今月の合計</div>
-              <div class="phone-amount">¥6,480</div>
-              <div class="phone-sub">利用中 8件 · 月平均 ¥6,200</div>
-
-              <div class="phone-section-title">まもなく更新</div>
-              <div class="phone-list">
-                <div class="phone-row">
-                  <div class="phone-row-left">
-                    <div class="phone-icon" style="background:#E50914">N</div>
-                    <div class="phone-row-name"><b>Netflix</b><small>3日後 · 12月15日</small></div>
-                  </div>
-                  <div class="phone-row-price">¥1,490</div>
-                </div>
-                <div class="phone-row">
-                  <div class="phone-row-left">
-                    <div class="phone-icon" style="background:#1DB954">S</div>
-                    <div class="phone-row-name"><b>Spotify</b><small>7日後 · 12月19日</small></div>
-                  </div>
-                  <div class="phone-row-price">¥980</div>
-                </div>
-                <div class="phone-row">
-                  <div class="phone-row-left">
-                    <div class="phone-icon" style="background:#0061FF">i</div>
-                    <div class="phone-row-name"><b>iCloud+</b><small>14日後 · 12月26日</small></div>
-                  </div>
-                  <div class="phone-row-price">¥400</div>
-                </div>
-                <div class="phone-row">
-                  <div class="phone-row-left">
-                    <div class="phone-icon" style="background:#FF0000">▶</div>
-                    <div class="phone-row-name"><b>YouTube Premium</b><small>22日後 · 1月3日</small></div>
-                  </div>
-                  <div class="phone-row-price">¥1,280</div>
-                </div>
-              </div>
-            </div>
+            <img src="summary.png" alt="Sublyのサマリー画面" class="phone-screen-img" />
           </div>
         </div>
 
