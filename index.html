@@ -235,52 +235,100 @@
     display: flex; justify-content: center;
     perspective: 1200px;
   }
+  /* ----- Premium iPhone frame ----- */
   .phone {
     position: relative;
-    width: 290px;
-    height: 600px;
-    border-radius: 50px;
-    background: linear-gradient(140deg, #1a1a1f 0%, #0a0a0d 100%);
-    padding: 14px;
-    box-shadow: var(--shadow-xl),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-    transform: rotate(-3deg);
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    width: 306px;
+    aspect-ratio: 9 / 19.55; /* iPhone 17 Pro display ratio */
+    border-radius: 54px;
+    padding: 5px; /* very thin titanium rim */
+    background:
+      /* angular highlights to suggest brushed titanium */
+      linear-gradient(135deg,
+        #4a4a52 0%,
+        #1a1a1f 14%,
+        #2a2a30 24%,
+        #08080a 50%,
+        #2a2a30 76%,
+        #1a1a1f 86%,
+        #4a4a52 100%);
+    box-shadow:
+      /* deep ambient floor shadow */
+      0 60px 90px -20px rgba(15, 22, 60, 0.42),
+      0 30px 50px -10px rgba(0, 0, 0, 0.4),
+      /* outer atmospheric glow */
+      0 0 0 0.5px rgba(0, 0, 0, 0.8),
+      /* inner rim highlight (specular) */
+      inset 0 0 0 0.5px rgba(255, 255, 255, 0.18),
+      inset 0 2px 0 rgba(255, 255, 255, 0.06),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.6);
+    transform: rotate(-2.5deg);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .phone:hover { transform: rotate(-1deg) translateY(-4px); }
-  /* Side buttons */
-  .phone::before {
-    content: "";
-    position: absolute;
-    left: -2px; top: 110px;
-    width: 3px; height: 30px;
-    background: #1a1a1f;
-    border-radius: 2px 0 0 2px;
-    box-shadow: 0 56px 0 #1a1a1f, 0 102px 0 #1a1a1f;
-  }
-  .phone::after {
-    content: "";
-    position: absolute;
-    right: -2px; top: 160px;
-    width: 3px; height: 60px;
-    background: #1a1a1f;
-    border-radius: 0 2px 2px 0;
-  }
+  .phone:hover { transform: rotate(-0.5deg) translateY(-6px); }
+
+  /* The display panel — slightly inset with dark glass bezel */
   .phone-screen {
     width: 100%; height: 100%;
-    border-radius: 36px;
-    background: var(--bg);
+    border-radius: 49px;
+    background: #000;
     overflow: hidden;
     position: relative;
-    color: var(--text);
-    display: flex; flex-direction: column;
+    /* Inner bezel: dark frame around the OLED, tiny inner highlight */
+    box-shadow:
+      inset 0 0 0 1.5px #000,
+      inset 0 0 0 2.5px rgba(50, 50, 58, 0.6);
   }
   .phone-screen-img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: top;
     display: block;
+    border-radius: inherit;
   }
+  /* Subtle glass glare overlay */
+  .phone-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      linear-gradient(125deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.02) 18%,
+        transparent 35%,
+        transparent 65%,
+        rgba(255, 255, 255, 0.025) 88%,
+        rgba(255, 255, 255, 0.05) 100%);
+    mix-blend-mode: screen;
+    z-index: 3;
+  }
+
+  /* Side buttons — three on left (silent, vol+, vol−), one on right (power) */
+  .phone-buttons-left, .phone-buttons-right {
+    position: absolute; top: 0;
+    width: 3px; height: 100%;
+    pointer-events: none;
+  }
+  .phone-buttons-left { left: -2px; }
+  .phone-buttons-right { right: -2px; }
+  .phone-btn {
+    position: absolute;
+    width: 3px;
+    background:
+      linear-gradient(90deg, #050507 0%, #2c2c33 40%, #4a4a54 55%, #2c2c33 70%, #050507 100%);
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  }
+  .phone-buttons-left .phone-btn { border-radius: 2px 0 0 2px; }
+  .phone-buttons-right .phone-btn { border-radius: 0 2px 2px 0; }
+  .phone-btn.silent { top: 14.5%; height: 4.5%; }
+  .phone-btn.vol-up { top: 22%; height: 9%; }
+  .phone-btn.vol-down { top: 33%; height: 9%; }
+  .phone-btn.power { top: 22%; height: 14%; }
   /* Dynamic island */
   .phone-island {
     position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
@@ -356,7 +404,7 @@
   }
   .float-savings .ic { background: var(--green-100); color: var(--green); }
   @media (max-width: 480px) {
-    .phone { width: 250px; height: 520px; }
+    .phone { width: 260px; }
     .float-notify, .float-savings { display: none; }
   }
 
@@ -637,6 +685,14 @@
         </div>
 
         <div class="phone">
+          <div class="phone-buttons-left" aria-hidden="true">
+            <div class="phone-btn silent"></div>
+            <div class="phone-btn vol-up"></div>
+            <div class="phone-btn vol-down"></div>
+          </div>
+          <div class="phone-buttons-right" aria-hidden="true">
+            <div class="phone-btn power"></div>
+          </div>
           <div class="phone-screen">
             <img src="summary.png" alt="Sublyのサマリー画面" class="phone-screen-img" />
           </div>
